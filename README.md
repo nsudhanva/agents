@@ -6,8 +6,6 @@ This workspace is a Python project that uses the OpenAI API to interact with a S
 
 The project is structured in a way that separates the different responsibilities into distinct modules. The `main.py` file is the entry point of the application, where the chat model and the agent executor are set up. The `handlers` directory contains the `ChatModelStartHandler` class, which handles the start of a chat model. The `tools` directory contains utility functions for interacting with the SQLite database (`sql.py`) and for writing HTML reports (`reports.py`).
 
-The reason for this structure is to keep the code modular, maintainable, and easy to understand. Each module has a specific responsibility, and they work together to provide the overall functionality of the application.
-
 ## Usage Instructions
 
 1. Install the required Python packages. This project uses several packages such as `langchain`, `pyboxen`, and `pydantic`. You can install them using pip:
