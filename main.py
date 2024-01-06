@@ -6,16 +6,22 @@ from langchain.prompts import (
     MessagesPlaceholder,
 )
 
+from langchain.schema import SystemMessage
+
 from langchain.agents import OpenAIFunctionsAgent, AgentExecutor
 from dotenv import load_dotenv
 
-from tools.sql import run_query_tool
+from tools.sql import run_query_tool, list_tables
 
 load_dotenv()
 
 chat = ChatOpenAI()
+
+tables = list_tables()
+print(tables)
 prompt = ChatPromptTemplate(
     messages=[
+        SystemMessage(content="You are an AI that has access to a SQLite database."),
         HumanMessagePromptTemplate.from_template("{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ]
@@ -35,4 +41,5 @@ agent_executor = AgentExecutor(
     tools=tools,
 )
 
-agent_executor("How many users are there in the database?")
+# agent_executor("How many users are there in the database?")
+agent_executor("How many users have a shipping address?")
